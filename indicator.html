@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        #indicator{
+            position: fixed;
+            top: 0px;
+            background-color: black;
+            width:0px;
+            height: 10px;
+            transition: width 0.2s ease-out;
+        }
+        #expand{
+            background-color: green;
+            height: 4000px;
+        }
+    </style>
+</head>
+<body onscroll="getScroll()">
+    <div id="indicator"></div>
+    <div id="expand">
+
+    </div>
+    <script>
+        const totalHeight = document.documentElement.offsetHeight //total height
+        const indicator = document.getElementById('indicator')
+        const limit = document.body.offsetHeight - window.innerHeight
+        function changeIndicator(e){
+            indicator.style.width = e+"%"
+               
+        }
+
+        function getScroll(){
+            const currentScroll = window.pageYOffset
+            const result = Math.floor((currentScroll*100)/limit)
+            changeIndicator(result)
+        }
+        // console.log(totalHeight);
+    </script>
+</body>
+</html>

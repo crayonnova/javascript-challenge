@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            cursor:none;
+        }
+        
+        #indicator{
+            position: fixed;
+            top: 0px;
+            background-color: black;
+            width:0px;
+            height: 50px;
+            transition: width 0.2s ease-out;
+        }
+
+        #expand{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        #expand h1{
+            color: #ebebeb;
+            font-size: 10em;
+        }
+        .red{
+            background-color: rgb(77, 23, 23);
+        }
+        .blue{
+            background-color: rgb(41, 41, 98);
+        }
+        .green{
+            background-color: rgb(36, 79, 36);
+        }
+
+        .cursor{
+            display: none;
+            width: 20px;
+            height: 20px;
+            border-radius:50%;
+            border:3px solid white;
+            position: absolute;
+            
+            transition-timing-function: ease-in-out;
+            /* animation: cursorMove .9s infinite alternate; */
+        }
+        .cursorMove {
+            transition-timing-function: ease-in-out;
+            animation: cursorMove 0.2s infinite alternate;
+        }
+        @keyframes cursorMove {
+            0%{
+                transform: scale(1);
+            }
+            50%{
+                transform: scale(2);
+            }
+            100%{
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="cursor"></div>
+    <div id="indicator"></div>
+    <div id="expand" class="red">
+        <h1>Section one</h1>
+    </div>
+    <div id="expand" class="blue">
+        <h1>Secton two</h1>
+        </div>
+        <div id="expand" class="green">
+            <h1>Section three</h1>
+        </div>
+
+
+    <script>
+        const cursor = document.querySelector('.cursor')
+        document.addEventListener('mousemove', (e) => {
+            cursor.setAttribute('style','display:block;top:'+(e.pageY-28)+'px; left:'+(e.pageX-31)+'px;')
+        })
+        document.addEventListener('scroll' , () => {
+            cursor.style.display = 'none'
+        })
+        document.addEventListener('click' , () => {
+            cursor.classList.add('cursorMove')
+            setTimeout( () => {
+                cursor.classList.remove('cursorMove')
+            },100)
+        })
+        
+    </script>
+</body>
+</html>
